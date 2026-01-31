@@ -15,15 +15,15 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 /**
- * QUESTÃO 1 - Web Scraping e ETL de Demonstrações Contábeis (ANS)
- * * OBJETIVO:
+ * Questão 1 - Web Scraping e ETL de Demonstrações Contábeis (ANS)
+ * * Objetivo:
  * 1. Baixar demonstrações contábeis da ANS.
  * 2. Filtrar despesas com "EVENTOS/SINISTROS".
  * 3. Consolidar em um CSV unificado.
  * * TRADE-OFF TÉCNICO (Armazenamento em Disco vs Memória):
- * Optamos por salvar os arquivos baixados em uma pasta local ("downloads/"), 
+ * Optei por salvar os arquivos baixados em uma pasta local ("downloads/"), 
  * atuando como uma "Staging Area" (Zona de Aterrissagem).
- * * JUSTIFICATIVA:
+ * * Justificativa:
  * - Resiliência: Se o processamento falhar, não é necessário baixar tudo novamente.
  * - Auditoria: Permite verificar o arquivo original (Raw Data) em caso de dúvidas.
  * - Escalabilidade: Processamos os arquivos um a um (Incremental), evitando 
@@ -36,22 +36,22 @@ public class Questao1 {
     private static final String PASTA_DOWNLOADS = "downloads";
     private static final String ARQUIVO_CSV_FINAL = "consolidado.csv";
     private static final String ARQUIVO_ZIP_FINAL = "consolidado_despeses.zip";
-    // Anos que vamos varrer no site
+    // Vamos que vamos varrer no site
     private static final String[] ANOS_BUSCA = {"2025", "2024"}; 
 
     public static void main(String[] args) {
         System.out.println("  INICIANDO PROCESSAMENTO ETL (Extract, Transform, Load)...  ");
 
         try {
-            // ETAPA 1: Extração (Web Scraping e Download)
+            // Etapa 1: Extração (Web Scraping e Download)
             // Cria a pasta 'downloads' se não existir
             Files.createDirectories(Paths.get(PASTA_DOWNLOADS));
             baixarArquivosDaANS();
 
-            // ETAPA 2: Tranformação (Leitura, Filtro e Normalização)
+            // Etapa 2: Tranformação (Leitura, Filtro e Normalização)
             processarArquivosBaixados();
 
-            // ETAPA 3: CARGA (Compactação Final)
+            // Etapa 3: CARGA (Compactação Final)
             compactarResultadoFinal();
 
             System.out.println("\n  PROCESSO FINALIZADO COM SUCESSO!  ");
@@ -187,7 +187,7 @@ public class Questao1 {
                     String descricao = colunas[3];    // Descrição da conta
                     String valorStr = colunas[5];     // Valor (Saldo Final)
 
-                    // REGRA DE NEGÓCIO: Filtrar apenas Eventos ou Sinistros
+                    // Regra de Negócio: Filtrar apenas Eventos ou Sinistros
                     if (descricao.toUpperCase().contains("EVENTO") || descricao.toUpperCase().contains("SINISTRO")) {
                         try {
                             double valor = formatadorNumero.parse(valorStr).doubleValue();
