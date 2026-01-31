@@ -1,24 +1,19 @@
-# Compiled class file
+# --- Arquivos de Compilação (Obrigatório ignorar) ---
+target/
 *.class
 
-# Log file
-*.log
+# --- IDEs e Configurações  ---
+.vscode/
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+.DS_Store
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
+# --- Arquivos Gerados pelo Código  ---
+downloads/
+consolidado.csv
+consolidado_despeses.zip
 *.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+*.log
